@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/item/item",
+    "pages/loc/loc",
+    "pages/locDetail/locaDetail",
+    "pages/invitation/invitation"
+  ],
+  "window": {
+    "backgroundColor": "#f4f4f4",
+    "backgroundTextStyle": "dark",
+    "backgroundColorBottom": "#f4f4f4",
+    "navigationBarBackgroundColor": "#f4f4f4",
+    "navigationBarTitleText": "找物",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.4",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+  "usingComponents": {
+    "item-list": "/components/ItemList/itemList"
+  },
+  "useExtendedLib": {
+    "weui": true
+  }
+}

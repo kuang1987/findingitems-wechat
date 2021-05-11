@@ -1,0 +1,121 @@
+<i-row>
+  <i-button bind:click="onPreCreateLoc">新增</i-button>
+</i-row>
+<i-row wx:for="{{locations}}" wx:for-index="e_index" wx:key="e_index">
+  <view style="margin-top: 10px">
+    <i-card title="{{item.alias_name}}">
+        <view slot="tag">
+        </view>
+        <view slot="extra" style="float: right">
+          <i-tag style="i-center"
+                  class="i-tags" 
+                  color="{{ item.role == 0 ? 'green' : 'yellow'}}"
+                  type="border">
+                  {{ item.role == 0 ? '我的位置' : '我加入的'}}
+          </i-tag>
+          <i-tag wx:if="{{item.is_default}}"
+              class="i-tags"
+              name="默认显示" 
+              type="border" 
+              color="{{ item.role == 0 ? 'green' : 'yellow'}}">
+              默认显示
+          </i-tag>
+        </view>
+        <view slot="footer">
+          <i-row>
+            <i-col span="3">
+              <i-row>
+                <i-avatar shape="circle" src="{{item.owner.avatar_url}}" size="default"></i-avatar>
+              </i-row>
+              <i-row i-class="i-center">
+                <i-tag style="i-center"
+                  class="i-tags" 
+                  color="green"
+                  type="border">
+                  主人
+                </i-tag>
+              </i-row>
+            </i-col>
+            <i-col span="3" wx:for="{{item.members}}" wx:for-index="f_index" wx:key="f_index" wx:for-item="m" bindtap="onPreRemoveMember" data-member-user-id="{{m.id}}" data-loc-membership-id="{{item.membership_id}}">
+              <i-row>
+                <i-avatar shape="circle" src="{{m.avatar_url}}" size="default">
+                </i-avatar>
+              </i-row>
+              <i-row i-class="i-center">
+                <i-tag style="i-center"
+                  class="i-tags" 
+                  color="yellow"
+                  type="border">
+                  成员
+                </i-tag>
+              </i-row>
+            </i-col>
+            <i-col span="3">
+              <button open-type="share" class="i-avatar-btn" wx:if="{{ item.role == 0}}" size="mini" data-loc="{{item}}">+</button>
+            </i-col>
+          </i-row>
+          <i-row style="height: 80px" i-class="i-center-border">
+            <i-col span="4" i-class="i-col-right">
+              <button size="mini" type="default" bindtap="onSetDefault" wx:if="{{!item.is_default}}" data-loc="{{item}}"><i-icon color="{{ item.role == 0 ? '' : 'orange'}}" type="like" size="{{20}}" /></button>
+              <!-- <i-radio position="left" data-loc="{{item}}" wx:if="{{!item.is_default}}" value=" 设为默认显示" bindchange="onSetDefault"></i-radio> -->
+            </i-col>
+            <i-col span="4" i-class="i-col-right">
+              <button size="mini" type="default" bindtap="onPreUpdate" data-loc="{{item}}"><i-icon color="{{ item.role == 0 ? '' : 'orange'}}" type="brush" size="{{20}}" /></button>
+            </i-col>
+            <i-col span="4" i-class="i-col-right" wx:if="{{item.role == 0}}">
+              <button data-loc="{{item}}" size="mini" type="default" bindtap="onPreDelete"><i-icon type="trash" size="{{20}}" /></button>
+            </i-col>
+            <i-col span="4" i-class="i-col-right" wx:if="{{item.role != 0}}">
+              <button size="mini" type="default" bindtap="onPreDelete" data-loc="{{item}}"><i-icon color="{{ item.role == 0 ? '' : 'orange'}}" type="undo" size="{{20}}" /></button>
+            </i-col>
+          </i-row>
+        </view>
+    </i-card>
+  </view>
+</i-row>
+
+<i-modal 
+  title="{{ deleteLoc.role == 0 ? '删除' : '离开'}}"
+  visible="{{ isDeleteModalShow }}"
+  actions="{{ deleteModalActions }}"
+  bind:click="onDeleteLoc">
+    <view style="padding: 5px">
+      <view wx:if="{{ deleteLoc.role == 0 }}">您将删除此"位置"，所有在此位置下的物品和成员将被删除，是否确认？</view>
+      <view wx:if="{{ deleteLoc.role != 0 }}">您将离开此"位置"，离开后将无法看到此"位置"的信息，确认离开？</view>
+    </view>
+</i-modal>
+
+<i-modal 
+  title="{{editModalTitle}}"
+  visible="{{ isEditModalShow }}"
+  actions="{{ editModalActions }}"
+  bind:click="onCreateUpdateLoc">
+      <i-panel title="">
+        <i-cell-group>
+          <i-cell title="名字" label="">
+            <i-input
+              maxlength="{{ 30 }}"
+              type="text"
+              slot="footer"
+              bind:change="onSetDetailName"
+              right value="{{ editLocDetail.alias_name }}"/>
+          </i-cell>
+          <i-cell title="是否默认" wx:if="{{ isCreate }}">
+            <i-switch value="{{ editLocDetail.is_default }}" bind:change="onSetDetailDefault" slot="footer"></i-switch>
+          </i-cell>
+        </i-cell-group>
+      </i-panel>
+</i-modal>
+
+<i-modal 
+  title="删除成员"
+  visible="{{ isRemoveMemberModalShow }}"
+  actions="{{ removeMemberModalActions }}"
+  bind:click="onRemoveLocMember">
+    <view style="padding: 5px">
+      <view>该成员将被您移出此"位置"，是否确认？</view>
+    </view>
+</i-modal>
+
+<i-toast id="toast" />
+

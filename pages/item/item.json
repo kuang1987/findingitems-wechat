@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "item-list": "/components/ItemList/itemList",
+    "i-row": "../../libs/iview/row/index",
+    "i-col": "../../libs/iview/col/index",
+    "i-icon": "../../libs/iview/icon/index",
+    "loc-selector": "/components/LocSelector/locSelector"
+  },
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "物品列表",
+  "navigationStyle": "default",
+  "backgroundColor": "#f4f4f4"
+}

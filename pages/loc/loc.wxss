@@ -1,0 +1,48 @@
+/* pages/loc/loc.wxss */
+
+.i-icon-btn {
+  width: 80px !important;
+}
+
+.i-center {
+  vertical-align: middle;
+  margin-top: 5px;
+}
+
+.i-center-border {
+  vertical-align: middle;
+  margin-top: 10px;
+  border-top: 1px solid #e9eaec;
+  padding: 5px 5px;
+}
+
+.i-col-right {
+  float: right !important;
+}
+
+.i-col-left {
+  float: left !important;
+}
+
+button[size='avatar'] {
+  width: auto;
+  padding: 0 0 !important;
+  line-height: 3;
+  font-size: 16px;
+}
+
+button.i-avatar-btn {
+  width:32px !important;
+  height:32px !important;
+  text-align:center;
+  background:#ccc;
+  color:#fff;
+  white-space:nowrap;
+  position:relative;
+  overflow:hidden;
+  vertical-align:middle;
+  line-height:32px !important;
+  border-radius:16px !important;
+  font-size:16px;
+  padding: 0 !important;
+}

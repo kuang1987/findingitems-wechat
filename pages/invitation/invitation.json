@@ -1,0 +1,21 @@
+{
+  "usingComponents": {
+    "i-toast": "../../libs/iview/toast/index",
+    "i-row": "../../libs/iview/row/index",
+    "i-col": "../../libs/iview/col/index",
+    "i-card": "../../libs/iview/card/index",
+    "i-radio": "../../libs/iview/radio/index",
+    "i-switch": "../../libs/iview/switch/index",
+    "i-cell": "../../libs/iview/cell/index",
+    "i-cell-group": "../../libs/iview/cell-group/index",
+    "i-panel": "../../libs/iview/panel/index",
+    "i-input": "../../libs/iview/input/index",
+    "i-button": "../../libs/iview/button/index",
+    "i-tag": "../../libs/iview/tag/index",
+    "i-icon": "../../libs/iview/icon/index",
+    "i-modal": "../../libs/iview/modal/index",
+    "i-avatar": "../../libs/iview/avatar/index",
+    "i-tabs": "../../libs/iview/tabs/index",
+    "i-tab": "../../libs/iview/tab/index"
+}
+}

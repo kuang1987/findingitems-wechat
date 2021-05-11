@@ -1,0 +1,13 @@
+<!--pages/item/item.wxml-->
+<view style="background: #F4F4F4;">
+  <view style="height: 100rpx; border-bottom: 1px solid #DBDBDB;">
+      <i-row>
+        <i-col span="8" offset="9">
+          <loc-selector wx:if="{{$.isLogin}}" bind:locChange="onLocIdChange"></loc-selector>
+        </i-col>
+      </i-row>
+  </view>
+  <i-row>
+    <item-list currentLocId="{{currentLocId}}"></item-list>
+  </i-row>
+</view>

@@ -1,0 +1,2 @@
+/* pages/item/item.wxss */
+@import "../../wxss/layout.wxss";

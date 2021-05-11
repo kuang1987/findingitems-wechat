@@ -1,0 +1,36 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "share_link_in_cha_to_loc",
+          "pathName": "pages/loc/loc",
+          "query": "",
+          "scene": 1007
+        },
+        {
+          "name": "invitation_join",
+          "pathName": "pages/invitation/invitation",
+          "query": "loc_id=21",
+          "scene": null
+        },
+        {
+          "name": "invitation_list",
+          "pathName": "pages/invitation/invitation",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,84 @@
+<!--pages/invitation/invitation.wxml-->
+<i-toast id="toast" />
+
+<i-tabs current="{{ currentTab }}" bindchange="handleTabChange">
+    <i-tab key="needConfirm" title="成员加入申请"></i-tab>
+    <i-tab key="myApplication" title="我的申请"></i-tab>
+</i-tabs>
+
+<i-row wx:for="{{invitations}}" wx:for-index="e_index" wx:key="e_index" wx:if="{{ currentTab == 'needConfirm'}}">
+  <view style="margin-top: 10px">
+    <i-card title="{{item.member.real_name}}" thumb="{{ item.member.avatar_url }}" wx:if="{{ item.is_owner }}">
+        <view slot="tag">
+        </view>
+        <view slot="extra" style="float: right">
+          <i-tag wx:if="{{item.status == 0}}"
+              class="i-tags"
+              name="待确认" 
+              type="border" 
+              color="green">
+              待确认
+          </i-tag>
+          <i-tag wx:if="{{item.status == 1}}"
+              class="i-tags"
+              name="已确认" 
+              type="border" 
+              color="green">
+              已确认
+          </i-tag>
+          <i-tag wx:if="{{item.status == 2}}"
+              class="i-tags"
+              name="已拒绝" 
+              type="border" 
+              color="green">
+              已拒绝
+          </i-tag>
+        </view>
+        <view slot="content">
+          <i-row>请求加入“{{item.location.name}}”</i-row>
+        </view>
+        <view slot="footer">
+          <i-row style="height: 80px" i-class="i-center-border" wx:if="{{item.status == 0}}">
+            <i-col span="4" offset="16" i-class="i-col-right">
+              <button size="mini" type="default" bindtap="onPreConfirm" data-loc-invitation="{{item.id}}"><i-icon color="green" type="right" size="{{22}}" /></button>
+            </i-col>
+            <i-col span="4" i-class="i-col-right">
+              <button data-loc-invitation="{{item.id}}" size="mini" type="default" bindtap="onPreReject"><i-icon color="green" type="close" size="{{20}}" /></button>
+            </i-col>
+          </i-row>
+        </view>
+    </i-card>
+  </view>
+</i-row>
+
+<i-row wx:for="{{invitations}}" wx:for-index="e_index" wx:key="e_index" wx:if="{{ currentTab == 'myApplication'}}">
+  <view style="margin-top: 10px">
+    <i-card title="{{item.member.real_name}}" thumb="{{ item.member.avatar_url }}" wx:if="{{ !item.is_owner }}">
+        <view slot="tag">
+        </view>
+        <view slot="extra" style="float: right">
+          <i-tag wx:if="{{item.status == 0}}"
+              class="i-tags"
+              name="待确认" 
+              type="border" 
+              color="green">
+              待确认
+          </i-tag>
+        </view>
+        <view slot="content">
+          <i-row>请求加入 {{item.location.owner.real_name}} “{{item.location.name}}”</i-row>
+        </view>
+    </i-card>
+  </view>
+</i-row>
+
+<i-modal 
+  title="{{ confirmOrReject ? '添加成员' : '残忍拒绝'}}"
+  visible="{{ isModalShow }}"
+  actions="{{ modalActions }}"
+  bind:click="onConfirmOrReject">
+    <view style="padding: 5px">
+      <view wx:if="{{ confirmOrReject }}">您将添加该用户为此位置成员，添加后，该用户可操作此位置下的所有数据，是否确认？</view>
+      <view wx:if="{{ !confirmOrReject }}">您将拒绝该用户的申请，是否确认？</view>
+    </view>
+</i-modal>

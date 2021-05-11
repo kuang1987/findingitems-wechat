@@ -1,0 +1,6 @@
+<picker wx:if="{{$.isLogin}}" bindchange="onLocationChange" value="{{selectedLoc}}" range="{{locations}}" range-key="{{'alias_name'}}">
+  <view style="flex-direction: row; display: flex; background-color: #F4F4F4">
+  <text style="margin-left: 10px;margin-right: 10px;">{{locations[selectedLoc].alias_name}}</text>
+  <i-icon type="unfold" size="{{12}}"/>
+  </view>
+</picker>

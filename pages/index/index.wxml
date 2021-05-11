@@ -1,0 +1,95 @@
+<view class="grid-row" hover="true">
+  <mp-toptips msg="{{errorTipText}}" type="error" show="{{isErrorTips}}" delay="2000"></mp-toptips>
+</view>
+<view class="grid-row" hover='true'>
+  <mp-toptips msg="{{infoTipText}}" type="info" show="{{isInfoTips}}" delay="200000"></mp-toptips>
+</view>
+
+<i-drawer mode="left" visible="{{isShowNavDrawer}}" bind:close="onHideNavDrawer">
+  <view style="background-color: #FFFFFF; width: 40vw; height: 100vh;">
+    <i-cell>
+      <view style="display: flex; flex-direction: row; align-items: center;">
+        <image src="{{$.userInfo.logo == null ? '/images/avatar.png' : $.userInfo.logo}}" mode='aspectFit' class="avatar"/>
+        <text style="margin-left: 10px">{{$.userInfo.name}}</text>
+      </view>
+    </i-cell>
+    <i-cell-group>
+      <i-cell title="物品列表" is-link url="/pages/item/item"><i-icon type="other" size="{{25}}" slot="icon" /></i-cell>
+      <i-cell title="位置管理" is-link url="/pages/loc/loc"><i-icon type="coordinates" size="{{25}}" slot="icon" /></i-cell>
+      <i-cell title="共享管理" is-link url="/pages/invitation/invitation"><i-icon type="group" size="{{25}}" slot="icon" /><mp-badge content="{{ notificationCount.invitationCount }}" style="margin-left: 5px;" slot="badge"/></i-cell>
+      <i-cell title="退出" bind:click="onUserLogout"><i-icon type="send" size="{{25}}" slot="icon" /></i-cell>
+    </i-cell-group>
+  </view>
+</i-drawer>
+
+<view class="grid-row" style="height: 1500rpx;">                                                                                                  
+
+  <view class="grid-row" hover='true' style="height: 100rpx; border-bottom: 1px solid #DBDBDB;" wx:if="{{!$.isLogin}}">
+    <view wx:if="{{!$.isLogin}}" class="grid-col-4" style="flex-direction: row;justify-content: space-around;">
+      <button  bindgetuserinfo="onUserLogin" open-type="getUserInfo" style="background-color: #F4F4F4; width: 100%;color: #050506;">点击登录</button>
+    </view>
+    <view class="grid-col-4"></view>
+    <view class="grid-col-4" style="flex-direction: row;justify-content: flex-end;" bindtap="onShowHelp">
+      <mp-icon icon="help" color="black" size="{{25}}"></mp-icon>
+      <text style="font-size: 10px">新手指引</text>
+    </view>
+  </view>
+  <view class="grid-row" hover='true' style="height: 100rpx; border-bottom: 1px solid #DBDBDB;" wx:if="{{$.isLogin}}">
+    <view class="grid-col-2" style="flex-direction: row;justify-content: left;">
+      <!-- <image  src="{{$.userInfo.logo == null ? '/images/avatar.png' : $.userInfo.logo}}" mode='aspectFit' class="avatar" bindtap="onShowNavDrawer"/>
+      <text style="align-content: start">{{$.userInfo.name}}</text> -->
+      <i-badge count="{{ notificationCount.invitationCount }}"><view><i-icon type="mine_fill" size="{{40}}" bindtap="onShowNavDrawer"/></view></i-badge>
+    </view>
+    <!-- <view class="grid-col-4" style="flex-direction: row;justify-content: left;">
+      <i-icon type="setup" size="{{25}}" bindtap="onShowNavDrawer"/>
+    </view> -->
+    <view class="grid-col-8" style="justify-content: center">
+      <loc-selector wx:if="{{$.isLogin}}" bind:locChange="onLocIdChange"></loc-selector>
+    </view>
+  </view>
+
+  <!-- <i-row style="height: 50rpx; margin-top: 10px" wx:if="{{$.isLogin}}">
+    <i-col span="24">
+      <picker bindchange="onLocationChange" value="{{selectedLoc}}" range="{{locations}}" range-key="name">
+        <view style="flex-direction: row; display: flex; justify-content: right; background-color: #F4F4F4">
+        <i-icon type="homepage" size="{{25}}"/>
+        <text style="margin-left: 10px;margin-right: 10px;">{{locations[selectedLoc].name}}</text>
+        <i-icon type="unfold" size="{{12}}"/>
+        </view>
+      </picker>
+    </i-col>
+  </i-row> -->
+  <view class="grid-row" hover='true' style="height: 300rpx;align-content: space-around">
+    <view class="grid-col-6">
+      <button class="circle-btn" bindtouchstart="onPressStore" bindtouchend="onStoreEnd"><text>存</text></button>
+    </view>
+  </view>
+  <view class="grid-row" hover='true' style="height: 300rpx;align-content: center;">
+    <view class="grid-col-6">
+      <button class="circle-btn" bindtouchstart="onPressFinding" bindtouchend="onFindingEnd"><text>找</text></button>
+    </view>
+  </view>
+
+  <mp-dialog title="新手指引" show="{{isShowHelp}}" buttons="{{helpDialogBtns}}" bindclose="onCloseHelp" bindbuttontap="onCloseHelp">
+    <view >
+      <text style="text-align: left;">
+  1. "点击登录"
+  2. 长按“存”或“找”按钮，待顶部出现“请开始录音”后录音存放或者寻找物品
+
+  示例：
+  【存】我把宝宝的乐高玩具放在客厅的柜子里了
+  【存】我把胶带放在工具箱里了
+  【找】宝宝的乐高在哪里
+  </text> 
+    </view>
+  </mp-dialog>
+
+  <item-dialog show="{{isStoreItemDialogShow}}" item="{{storeItem}}"></item-dialog>
+
+  <view class="grid-row" hover='true' style="height: 120rpx;justify-content: center;align-content: center;" wx:if="{{isShowSearchResult}}">
+    <view class="grid-col-4" style="border-bottom: 1px solid #DBDBDB;justify-content: center;">
+      <text style="font-size: 50rpx">物品列表</text>
+    </view>
+  </view>
+  <item-list id="item-list" searchId="{{searchId}}" wx:if="{{isShowSearchResult}}"></item-list>
+</view>

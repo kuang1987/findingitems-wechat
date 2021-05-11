@@ -1,0 +1,21 @@
+{
+  "usingComponents": {
+    "item-list": "/components/ItemList/itemList",
+    "item-dialog": "/components/ItemDialog/itemDialog",
+    "loc-selector": "/components/LocSelector/locSelector",
+    "mp-toptips": "weui-miniprogram/toptips/toptips",
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "mp-dialog": "weui-miniprogram/dialog/dialog",
+    "mp-badge": "weui-miniprogram/badge/badge",
+    "i-drawer": "../../libs/iview/drawer/index",
+    "i-row": "../../libs/iview/row/index",
+    "i-col": "../../libs/iview/col/index",
+    "i-cell": "../../libs/iview/cell/index",
+    "i-cell-group": "../../libs/iview/cell-group/index",
+    "i-icon": "../../libs/iview/icon/index",
+    "i-tag": "../../libs/iview/tag/index",
+    "i-button": "../../libs/iview/button/index",
+    "i-divider": "../../libs/iview/divider/index",
+    "i-badge": "../../libs/iview/badge/index"
+  }
+}

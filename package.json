@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "set-cookie-parser": "^2.4.7",
+    "xmldom": "^0.4.0",
+    "weapp-cookie": "^1.4.6"
+  }
+}

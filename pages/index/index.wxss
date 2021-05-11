@@ -1,0 +1,40 @@
+@import "../../wxss/layout.wxss";
+
+page {
+  width: 100%;
+  padding-top: 0rpx;
+  background: #ffffff;
+  flex-direction: column;
+  justify-content: flex-start;
+  display: flex;
+}
+
+image.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 48rpx;
+  display: block;
+}
+
+button.circle-btn {
+  width: 100% !important;
+  height: 70%;
+  border-radius: 20rpx;
+  font-size: 50rpx;
+  background-color: #F4F4F4;
+  color: #5F5F5F;
+  align-items: center;
+  align-content: center;
+  display: table;
+  border: 1px solid #5F5F5F;
+}
+
+button.circle-btn text {
+  vertical-align: middle;
+  display: table-cell;
+  color: #5F5F5F;
+}
+
+demo-container {
+  width: 40%;
+}

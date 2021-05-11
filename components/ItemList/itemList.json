@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "i-card": "../../libs/iview/card/index",
+    "i-icon": "../../libs/iview/icon/index",
+    "i-row": "../../libs/iview/row/index",
+    "i-col": "../../libs/iview/col/index"
+  }
+}

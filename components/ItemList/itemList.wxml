@@ -1,0 +1,48 @@
+<!-- <text>共找到{{totalCount}}条记录</text> -->
+<scroll-view
+  scroll-y="true"
+  style=""
+  refresher-enabled
+  refresher-threshold="100"
+  refresher-default-style="white"
+  refresher-background="lightgrey"
+  refresher-triggered="{{triggered}}"
+  bindrefresherpulling="onPulling"
+  bindrefresherrefresh="onRefresh"
+  bindrefresherrestore="onRestore"
+  bindrefresherabort="onAbort"
+  bindscrolltolower="onLoadMore"
+>
+  <view class="grid-row" wx:if="{{itemData.length == 0}}" style="height: 100rpx;align-content: center;">
+    <text>很遗憾，我没有找到...</text>
+  </view>
+  <i-card wx:for="{{itemData}}" wx:key="item" title="{{ item.owner.real_name }}" thumb="{{ item.owner.avatar_url }}">
+    <view slot="content">{{ item.text }}</view>
+    <view slot="footer">
+      <i-row>
+        <i-col span="20">
+          {{ item.create_time }}
+        </i-col>
+        <i-col span="4">
+          <button size="mini" type="default" bindtap="onDelete" data-id="{{item.id}}"><i-icon type="trash" size="{{20}}" /></button>
+        </i-col>
+      </i-row>
+    </view>
+    <view slot="extra">{{ item.location_alias_name }}</view>
+  </i-card>
+  <!-- <view class="grid-row" wx:if="{{itemData.length > 0}}" wx:for="{{itemData}}" wx:key="item" style="border-bottom: 1px solid #DBDBDB;height: 100rpx;">
+    <view class="grid-col-10" style="align-items: start;">
+      <text>{{item.text}}</text>
+    </view>
+    <view class="grid-col-2">
+      <mp-icon icon="delete" color="black" size="{{25}}" bindtap="onDelete" data-id="{{item.id}}"></mp-icon>
+    </view>
+  </view> -->
+  <view class="grid-row" wx:if="{{ itemData.length > 0 && hasMore}}" style="height: 100rpx;align-content: center;">
+    <text>加载更多...</text>
+  </view>
+  <view class="grid-row" wx:if="{{ itemData.length > 0 && !hasMore}}" style="height: 100rpx;align-content: center;">
+    <text>到底啦...</text>
+  </view>
+</scroll-view>
+<slot></slot>

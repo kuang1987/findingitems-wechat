@@ -1,0 +1,5 @@
+<mp-dialog title="存放成功" show="{{show}}" bindbuttontap="onBtnTap" buttons="{{btns}}">
+  <view >
+    <text style="text-align: left;">{{item.text}}</text>
+  </view>
+</mp-dialog>
